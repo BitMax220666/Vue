@@ -1,6 +1,20 @@
+<script setup>
+import { ref } from 'vue'
+
+const text = ref('')
+
+function onMouseOver(e) {
+  text.value = e.target.value
+}
+
+function onMouseLeave(e) {
+  text.value = e.target.value
+}
+</script>
+
 <template>
   <div class="item">
-    <i>
+    <i @mouseover="onMouseOver" @mouseleave="onMouseLeave">
       <slot name="icon"></slot>
     </i>
     <div class="details">
@@ -30,6 +44,12 @@ i {
   width: 32px;
   height: 32px;
   color: var(--color-text);
+  transition: 1s;
+}
+
+i:hover {
+  background: rebeccapurple;
+  color: white;
 }
 
 h3 {
