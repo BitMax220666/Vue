@@ -1,19 +1,37 @@
-<script setup>
-defineProps({
-  msg: {
-    type: String,
-    required: true
+<script>
+export default {
+  props: ['msg'],
+  data() {
+    return {
+      currentTextIndex: 0,
+      text: '',
+      greetingTexts: [
+        'Заходи, слюшай!',
+        'You’ve successfully created a project',
+        'Vue’s official documentation provides you with all information you need to get started',
+        'Got stuck? Ask your question on Vue Land, our official Discord server, or StackOverflow',
+        'As an independent project, Vue relies on community backing for its sustainability. You can help us by becoming a sponsor',
+      ]
+    }
+  },
+  mounted() {
+    this.text = this.greetingTexts[0];
+  },
+  methods: {
+    changeText() {
+      this.currentTextIndex++;
+      if (this.currentTextIndex == this.greetingTexts.length) this.currentTextIndex = 0;
+      this.text = this.greetingTexts[this.currentTextIndex];
+    }
   }
-})
+}
 </script>
 
 <template>
   <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
+    <h1 class="green" @click="changeText">{{ msg }}</h1>
     <h3>
-      You’ve successfully created a project with
-      <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>.
+      {{ text }}
     </h3>
   </div>
 </template>
@@ -35,6 +53,7 @@ h3 {
 }
 
 @media (min-width: 1024px) {
+
   .greetings h1,
   .greetings h3 {
     text-align: left;

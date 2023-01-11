@@ -1,14 +1,14 @@
 <script setup>
 import { ref } from 'vue'
 
-const text = ref('')
+const addClass = ref(false)
 
 function onMouseOver(e) {
-  text.value = e.target.value
+  addClass.value = true;
 }
 
 function onMouseLeave(e) {
-  text.value = e.target.value
+  addClass.value = false
 }
 </script>
 
@@ -17,7 +17,7 @@ function onMouseLeave(e) {
     <i @mouseover="onMouseOver" @mouseleave="onMouseLeave">
       <slot name="icon"></slot>
     </i>
-    <div class="details">
+    <div class="details" v-bind:class="{ 'flip': addClass == true }">
       <h3>
         <slot name="heading"></slot>
       </h3>
@@ -35,6 +35,11 @@ function onMouseLeave(e) {
 .details {
   flex: 1;
   margin-left: 1rem;
+  transition: 1s;
+}
+
+.details.flip {
+  transform: rotateY(360deg);
 }
 
 i {
