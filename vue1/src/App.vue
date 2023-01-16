@@ -10,13 +10,12 @@ import HelloWorld from './components/HelloWorld.vue'
         :style="{ height: '100%', borderRight: 0 }" mode="inline" @click="handleClick">
         <a-sub-menu key="sub1" @titleClick="titleClick">
           <template #icon></template>
-            <MailOutlined />
-          </template>
+          <MailOutlined />
+
           <template #title>Navigation One</template>
           <a-menu-item-group key="g1">
-            <template #icon>
+            <template #icon></template>
               <QqOutlined />
-            </template>
             <template #title>Item 1</template>
             <a-menu-item key="1">Option 1</a-menu-item>
             <a-menu-item key="2">Option 2</a-menu-item>
